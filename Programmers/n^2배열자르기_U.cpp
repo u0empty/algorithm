@@ -1,3 +1,4 @@
+// 정확성 30. long long 일 때도 마찬가지.
 #include <string>
 #include <vector>
 
