@@ -13,13 +13,18 @@ int main() {
 
 	stack<int> s;
 	int line = 1;
-	while (line <= n) {
+	int cnt = 0;
+	while (1) {
+		if (line > n) break;
+		if (cnt > n) break;
+
 		if (!s.empty() && s.top() == line) {
 			s.pop();
 			line++;
 			continue;
 		}
 		cin >> tmp;
+		cnt++;
 		if (tmp == line) {
 			line++;
 		}
