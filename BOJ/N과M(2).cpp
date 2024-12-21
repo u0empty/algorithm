@@ -7,17 +7,17 @@ int arr[9];
 int visit[9];
 vector<int> v;
 
-void solution(int lev) {
+void solution(int num, int lev) {
 	if (lev == M) {
 		for (int i = 0; i < v.size(); i++) cout << v[i] << " ";
 		cout << "\n";
 		return;
 	}
-	for (int i = 1; i <= N; i++) {
+	for (int i = num; i <= N; i++) {
 		if (visit[i]) continue;
 		visit[i] = 1;
 		v.push_back(arr[i]);
-		solution(lev + 1);
+		solution(i, lev + 1);
 		visit[i] = 0;
 		v.pop_back();
 	}
@@ -26,5 +26,5 @@ void solution(int lev) {
 int main() {
 	cin >> N >> M;
 	for (int i = 1; i <= N; i++) arr[i] = i;
-	solution(0);
+	solution(1, 0);
 }
