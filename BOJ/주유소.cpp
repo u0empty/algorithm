@@ -18,7 +18,7 @@ int main() {
 	long long mini = price[0];
 	for (int i = 0; i < n - 1; i++) {
 		if (price[i] < mini) mini = price[i];
-		cost += 1LL * mini * dist[i];
+		cost += mini * dist[i];
 	}
 	cout << cost;
 
