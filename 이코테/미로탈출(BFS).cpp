@@ -1,49 +1,44 @@
 #include <iostream>
-#include <vector>
-#include <string>
 #include <queue>
 using namespace std;
 
 int N, M;
-vector<string> map;
-bool visited[201][201];
-int path[201][201] = { 0, };
+int map[201][201] = { 0, };
 int dy[4] = { -1, 1, 0, 0 };
 int dx[4] = { 0, 0, -1, 1 };
 
 void bfs(int y, int x) {
 	queue<pair<int, int>> q;
-	visited[y][x] = true;
-	path[y][x] = 1;
 	q.push({ y, x });
 
 	while (!q.empty()) {
-		int nowy = q.front().first;
-		int nowx = q.front().second;
+		int y = q.front().first;
+		int x = q.front().second;
 		q.pop();
 
 		for (int i = 0; i < 4; i++) {
-			int ny = nowy + dy[i];
-			int nx = nowx + dx[i];
+			int ny = y + dy[i];
+			int nx = x + dx[i];
 
 			if (ny < 0 || nx < 0 || ny >= N || nx >= M) continue;
-			if (visited[ny][nx]) continue;
-			if (map[ny][nx] == '0') continue;
+			if (map[ny][nx] == 0) continue;
 			
-			visited[ny][nx] = true;
-			path[ny][nx] = path[nowy][nowx] + 1;
-			q.push({ ny, nx });
+			if (map[ny][nx] == 1) {
+				map[ny][nx] = map[y][x] + 1;
+				q.push({ ny, nx });
+			}
 		}
 	}
+	cout << map[N - 1][M - 1];
 }
 
 int main() {
 	cin >> N >> M;
-	map.resize(N);
-	for (int i = 0; i < N; i++) cin >> map[i];
-	
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			scanf("%1d", &map[i][j]);
+		}
+	}
 	bfs(0, 0);
-	cout << path[N - 1][M - 1];
-
 	return 0;
 }
