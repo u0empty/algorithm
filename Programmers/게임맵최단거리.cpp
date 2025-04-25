@@ -13,7 +13,7 @@ int solution(vector<vector<int>> maps) {
     queue<pair<int, int>> q;
     
     q.push({0, 0});
-    used[0][0] = true;
+    used[0][0] = 1;
     
     while(!q.empty()) {
         int y = q.front().first;
@@ -29,11 +29,11 @@ int solution(vector<vector<int>> maps) {
             int nx = x + dx[i];
             
             if (ny < 0 || nx < 0 || ny >= n || nx >= m) continue;
+            if (used[ny][nx] >= 1) continue;
             if (maps[ny][nx] == 0) continue;
-            if (used[ny][nx]) continue;
             
-            used[ny][nx] = used[y][x] + 1;
             q.push({ny, nx});
+            used[ny][nx] = used[y][x] + 1;
         }
     }
     
