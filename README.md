@@ -12,3 +12,6 @@
 - Programmers
 - SWEA
 - 이코테
+
+### 🥔 각오
+- 가고일
